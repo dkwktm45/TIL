@@ -1,0 +1,24 @@
+server:
+  port: 8070
+
+spring:
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/book_manager
+    username: root
+    password: dkwktm45
+    initialization-mode: always
+
+
