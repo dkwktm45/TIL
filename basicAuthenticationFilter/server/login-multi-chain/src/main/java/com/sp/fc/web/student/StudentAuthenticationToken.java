@@ -1,0 +1,35 @@
+package com.sp.fc.web.student;
+
+import com.sp.fc.web.teacher.Teacher;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
+import java.util.HashSet;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class StudentAuthenticationToken implements Authentication {
+
+    private Student principal; // 인증된 결과
+    private String credentials; // 인증을 받기 위해 필요한 정보
+    private String details; // 기타 정보
+    private boolean authenticated; // 권한 정보들
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return principal == null ? new HashSet<>() : principal.getRole();
+    }
+
+
+    @Override
+    public String getName() {
+        return principal == null ? "" : principal.getUsername();
+    }
+}
