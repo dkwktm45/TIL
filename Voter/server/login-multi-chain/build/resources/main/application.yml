@@ -1,0 +1,9 @@
+server:
+  port: 9054
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cashe: false
+    check-template-location: true
