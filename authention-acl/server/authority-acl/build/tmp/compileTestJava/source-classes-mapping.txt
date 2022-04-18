@@ -1,2 +1,4 @@
 com/sp/fc/web/CachTest.java
  com.sp.fc.web.CachTest
+com/sp/fc/web/PaperTest.java
+ com.sp.fc.web.PaperTest

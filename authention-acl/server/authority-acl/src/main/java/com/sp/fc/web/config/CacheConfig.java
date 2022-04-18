@@ -9,21 +9,21 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.LockTimeoutException;
 import java.util.ResourceBundle;
 
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 public class CacheConfig {
 
-    @Bean
-    public EhCacheCacheManager cacheManager(){
-        EhCacheCacheManager cacheManager = new EhCacheCacheManager();
-        cacheManager.setCacheManager(ehcacheFactoryBean().getObject());
-        return cacheManager;
-    }
-
-    @Bean
-    public EhCacheManagerFactoryBean ehcacheFactoryBean() {
-        EhCacheManagerFactoryBean factoryBean = new EhCacheManagerFactoryBean();
-
-        return factoryBean;
-    }
+//    @Bean
+//    public EhCacheCacheManager cacheManager(){
+//        EhCacheCacheManager cacheManager = new EhCacheCacheManager();
+//        cacheManager.setCacheManager(ehcacheFactoryBean().getObject());
+//        return cacheManager;
+//    }
+//
+//    @Bean
+//    public EhCacheManagerFactoryBean ehcacheFactoryBean() {
+//        EhCacheManagerFactoryBean factoryBean = new EhCacheManagerFactoryBean();
+//
+//        return factoryBean;
+//    }
 }
