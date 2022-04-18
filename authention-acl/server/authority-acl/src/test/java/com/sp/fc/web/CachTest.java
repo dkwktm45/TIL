@@ -22,6 +22,7 @@ public class CachTest {
     private CacheManager cacheManager;
 
     Optional<Paper> getPaper(Long id){
+        // cache 매니저로 부터 papers 라는 이름에서 id에 해당하는 객체를 리턴해준다.
         return Optional.ofNullable(cacheManager.getCache("papers").get(id,Paper.class));
     }
 
@@ -34,6 +35,8 @@ public class CachTest {
 
         paperRepository.findById(1L);
         assertTrue(getPaper(1L).isPresent());
+        System.out.println("캐시 : "+ getPaper(1L).isPresent());
+        System.out.println("성공 : " + paperRepository.findById(1L));
     }
 
 }

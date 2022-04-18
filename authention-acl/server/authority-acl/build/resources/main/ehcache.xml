@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         maxBytesLocalHeap="300M"
+updateCheck="false">
+
+    <!--<diskStore path="java.io.tmpdir" />-->
+    <diskStore path = "java.io.tmpdir" />
+    <sizeOfPolicy maxDepth="10000" maxDepthExceededBehavior="continue"/>
+
+    <!-- 필수로 설정해야하며 <cache> 들의 기본 설정 값 -->
+    <defaultCache
+            eternal = "false"
+            timeToIdleSeconds = "0"
+            timeToLiveSeconds="1200"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+    </defaultCache>
+
+    <cache name="papers"
+           eternal = "false"
+           timeToIdleSeconds = "0"
+           timeToLiveSeconds="100"
+           overflowToDisk="false"
+           diskPersistent="false"
+           memoryStoreEvictionPolicy="LRU">
+    </cache>
+</ehcache>
