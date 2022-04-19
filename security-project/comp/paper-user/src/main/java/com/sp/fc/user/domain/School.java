@@ -1,6 +1,5 @@
 package com.sp.fc.user.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +9,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-@Table(name = "sc_school")
+@Table(name="sp_school")
 public class School {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long schoolId;
@@ -26,5 +26,7 @@ public class School {
 
     @Column(updatable = false)
     private LocalDateTime created;
+
     private LocalDateTime updated;
+
 }
