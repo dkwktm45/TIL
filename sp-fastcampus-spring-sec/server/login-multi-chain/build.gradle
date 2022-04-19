@@ -1,7 +1,0 @@
-
-apply from: "../web-common.gradle"
-
-dependencies {
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5'
-}
-

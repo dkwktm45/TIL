@@ -1,7 +1,0 @@
-server:
-  port: 9052
-
-logging:
-  level:
-    org.apache.http: DEBUG
-    httpclient.wire: DEBUG
