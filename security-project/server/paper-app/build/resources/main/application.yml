@@ -15,7 +15,6 @@ spring:
     username: root
     password: "dkwktm45"
 
-
   devtools:
     livereload:
       enabled: true
@@ -31,3 +30,7 @@ spring:
 #  web:
 #    resources:
 #      static-locations:
+
+logging:
+  level:
+    org.springframework.web: trace
