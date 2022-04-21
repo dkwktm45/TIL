@@ -46,7 +46,6 @@ public class UserTest extends WithUserTest {
     @Test
     void 사용자_생성 () {
         userTestHelper.createUser(school, "user1");
-        // StreamSupport 로 리턴 하는 경우는 아래와 같이 사용할 수 있다.
         List<User> list = StreamSupport.stream(userRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
         assertEquals(1,list.size());
