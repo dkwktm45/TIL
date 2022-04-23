@@ -34,8 +34,8 @@ public class HomeController {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
 
-    @GetMapping("/")
-    public String home(Model model){
+    @GetMapping(value= {"/main"})
+    public String home(){
         return "index";
     }
 
@@ -53,16 +53,15 @@ public class HomeController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/login")
+    @GetMapping(value="/login2")
     public String login(
             @AuthenticationPrincipal User user,
             @RequestParam(value="site", required = false) String site,
             @RequestParam(value="error", defaultValue = "false") Boolean error,
             HttpServletRequest request,
             Model model
-    ){// 실패시에는 에러를 처리하도록 했다.
+    ){
         if(site == null) {
-            // session 이 끊어 졌거나 logout 가 강제로 되었을 때 cache를 통해 사용했던 경로로 이동하게 만들 수 있다. 이게 savedRequest 를 사용하는 이유이다.
             SavedRequest savedRequest = requestCache.getRequest(request, null);
             if(savedRequest != null) {
                 site = estimateSite(savedRequest.getRedirectUrl());
@@ -97,24 +96,18 @@ public class HomeController {
         return "study.html";
     }
 
-//    @PostMapping("/login")
-//    public String loginPost(@RequestParam String site, Model model){
-//        model.addAttribute("site", site);
-//
-//        return "redirect:/"+site;
-//    }
 
-    // 각각 사용자에 맞는 signup 를 redirect 시킨다.
     @GetMapping("/signup")
     public String signUp(
             @RequestParam String site,
             HttpServletRequest request
     ){
         if(site == null) {
-
             site = estimateSite(request.getParameter("referer"));
         }
         return "redirect:/"+site+"/signup";
     }
 
+    @GetMapping("access-denied")
+    public String accessDenied(){return "/accessDenied";}
 }

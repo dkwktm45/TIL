@@ -31,14 +31,14 @@ subprojects {
     }
 
     configurations {
-//        developmentOnly
+        developmentOnly
         runtimeClasspath {
             extendsFrom developmentOnly
         }
     }
 
     dependencies {
-//        developmentOnly("$boot:spring-boot-devtools")
+        developmentOnly("$boot:spring-boot-devtools")
         implementation "$boot:spring-boot-starter-security"
         implementation 'com.fasterxml.jackson.core:jackson-annotations'
 
@@ -46,7 +46,7 @@ subprojects {
         testCompileOnly lombok
         annotationProcessor lombok
         testAnnotationProcessor lombok
-        testCompileOnly "junit:junit:4.12"
+
         testImplementation "$boot:spring-boot-starter-test"
     }
 

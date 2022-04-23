@@ -68,6 +68,9 @@ public class OnlinePaperSecurityConfig extends WebSecurityConfigurerAdapter {
                             ;
                 })
                 .addFilterAt(filter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(exception ->{
+                    exception.accessDeniedPage("/access-denied");
+                })
                 .authorizeRequests(config->{
                     config// filterSecurity 에서 체크해줘야 하는 list
                             .antMatchers("/").permitAll()
@@ -75,8 +78,8 @@ public class OnlinePaperSecurityConfig extends WebSecurityConfigurerAdapter {
                             .antMatchers("/error").permitAll()
                             .antMatchers("/signup/*").permitAll()
                             // 각각 사용자에 걸맞는 권한으로 접근이 가능해야 한다.
-                            .antMatchers("/study/**").hasAuthority("ROLE_STUDENT")
-                            .antMatchers("/teacher/**").hasAuthority("ROLE_TEACHER")
+                            .antMatchers("/study/**").hasAnyAuthority("ROLE_ADMIN","ROLE_STUDENT")
+                            .antMatchers("/teacher/**").hasAnyAuthority("ROLE_ADMIN","ROLE_TEACHER")
                             .antMatchers("/manager/**").hasAuthority("ROLE_ADMIN")
                     ;
                 })
