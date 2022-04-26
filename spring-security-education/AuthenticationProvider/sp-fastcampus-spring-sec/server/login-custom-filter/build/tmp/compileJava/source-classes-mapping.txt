@@ -11,8 +11,8 @@ com/sp/fc/web/teacher/Teacher.java
 com/sp/fc/web/student/StudentAuthenticationToken.java
  com.sp.fc.web.student.StudentAuthenticationToken
  com.sp.fc.web.student.StudentAuthenticationToken$StudentAuthenticationTokenBuilder
-com/sp/fc/web/controller/TeacherController.java
- com.sp.fc.web.controller.TeacherController
+com/sp/fc/web/config/SecurityConfig.java
+ com.sp.fc.web.config.SecurityConfig
 com/sp/fc/web/controller/StudentController.java
  com.sp.fc.web.controller.StudentController
 com/sp/fc/web/student/StudentManager.java
@@ -24,5 +24,5 @@ com/sp/fc/web/student/Student.java
  com.sp.fc.web.student.Student$StudentBuilder
 com/sp/fc/web/controller/HomeController.java
  com.sp.fc.web.controller.HomeController
-com/sp/fc/web/config/SecurityConfig.java
- com.sp.fc.web.config.SecurityConfig
+com/sp/fc/web/controller/TeacherController.java
+ com.sp.fc.web.controller.TeacherController
