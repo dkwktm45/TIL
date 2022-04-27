@@ -5,6 +5,7 @@ import com.sp.fc.user.repository.SpUserRepository;
 import com.sp.fc.user.service.SpUserService;
 import com.sp.fc.web.config.UserLoginForm;
 import com.sp.fc.web.test.WebIntegrationTest;
+import ognl.Token;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JWTRequestTest extends WebIntegrationTest {
 
@@ -42,6 +44,20 @@ public class JWTRequestTest extends WebIntegrationTest {
     @Test
     void test_1(){
 
+        TokenBox token = getToken();
+        RestTemplate client = new RestTemplate();
+
+
+        HttpHeaders header = new HttpHeaders();
+        header.add(HttpHeaders.AUTHORIZATION, "Bearer "+token);
+        HttpEntity body = new HttpEntity<>(null, header);
+        ResponseEntity<String> resp2 = client.exchange(uri("/greeting"), HttpMethod.GET, body, String.class);
+
+        assertEquals("hello", resp2.getBody());
+
+    }
+
+    private TokenBox getToken(){
         RestTemplate client = new RestTemplate();
 
         HttpEntity<UserLoginForm> body = new HttpEntity<>(
@@ -49,16 +65,51 @@ public class JWTRequestTest extends WebIntegrationTest {
         );
 
         ResponseEntity<SpUser> resp1 = client.exchange(uri("/login"), HttpMethod.POST, body, SpUser.class);
-        System.out.println(resp1.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0));
-        System.out.println(resp1.getBody());
+        return TokenBox.builder().authToken(resp1.getHeaders().get("auth_token").get(0))
+                .refreshToken(resp1.getHeaders().get("refresh_token").get(0))
+                .build();
 
+    }
+
+    private TokenBox refreshToken(String refreshToken){
+        RestTemplate client = new RestTemplate();
+
+        HttpEntity<UserLoginForm> body = new HttpEntity<>(
+                UserLoginForm.builder().refreshToken(refreshToken).build()
+        );
+
+        ResponseEntity<SpUser> resp1 = client.exchange(uri("/login"), HttpMethod.POST, body, SpUser.class);
+        return TokenBox.builder().authToken(resp1.getHeaders().get("auth_token").get(0))
+                .refreshToken(resp1.getHeaders().get("refresh_token").get(0))
+                .build();
+
+    }
+
+    @DisplayName("2. 토큰 만료 테스트 ")
+    @Test
+    void test_2() throws InterruptedException {
+
+
+        // 기존 토큰 검사
+        TokenBox token = getToken();
+        Thread.sleep(3000);
+        RestTemplate client = new RestTemplate();
         HttpHeaders header = new HttpHeaders();
-        header.add(HttpHeaders.AUTHORIZATION, resp1.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0));
-        body = new HttpEntity<>(null, header);
-        ResponseEntity<String> resp2 = client.exchange(uri("/greeting"), HttpMethod.GET, body, String.class);
+        header.add(HttpHeaders.AUTHORIZATION, "Bearer "+token.getAuthToken());
 
-        assertEquals("hello", resp2.getBody());
+        assertThrows(Exception.class,()->{
+            HttpEntity body = new HttpEntity<>(null, header);
+            ResponseEntity<String> resp2 = client.exchange(uri("/greeting"), HttpMethod.GET, body, String.class);
+        });
 
+        // refresh 토큰 발행
+        token = refreshToken(token.getRefreshToken());
+        HttpHeaders header2 = new HttpHeaders();
+        header2.add(HttpHeaders.AUTHORIZATION, "Bearer "+token.getAuthToken());
+        HttpEntity body = new HttpEntity<>(null, header2);
+        ResponseEntity<String> resp3 = client.exchange(uri("/greeting"), HttpMethod.GET, body, String.class);
+
+        assertEquals("hello",resp3.getBody());
     }
 
 }
