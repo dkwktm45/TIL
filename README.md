@@ -1,0 +1,75 @@
+# Today I Learned
+
+## Spring
+- **시작**
+    - 개발환경 설치
+    - 객체지향 설계
+    - POJO Java 및 디자인 패턴
+    - Rest Client 설치하기
+    - Post 및 Put ...Delete
+    - Response를 받아내는 다양한 방법
+    - Object Mapper
+- **들여다 보기**
+    - Spring Ioc/DI
+    - AOP
+- **스프링 기능을 활용**
+    - spring boot validation
+    - spring boot Custom Validation
+    - spring boot Exection 처리
+    - Interceptor
+- **Junit 테스트하기**
+    - Junit
+    - spring-Junit
+- **JPA**
+    - JPA
+    - Jpa Repository Interface 상세
+    - Repository Interface 메소드 살펴보기
+    - QueryMethod 활용_1
+    - QueryMethod 활용_2
+    - QueryMethod 활용_2_2
+    - QueryMethod 활용_3
+    - 쿼리메소드로 페이징 처리
+    - Entity의 기본 속성
+    - Entity Listener의 활용
+    - Entity Listener의 활용2
+    - 1:1 연관관계 알아보기
+    - 1:N 연관관계 알아보기
+    - M:N 연관관계 알아보기
+    - 영속성 컨텐스트 알아보기
+    - entity 캐시 알아보기
+    - entity 생애주기 알아보기
+    - Jpa에서 Transaction 활용하기
+    - Transaction 전파
+    - Jpa에서 Cascade 활용하기
+    - Jpa에서 OrphanRemoval 활용하기
+    - @Query 사용하기
+    - Jpa에서 Native Query 활용하기
+    - Jpa에서의 N+1 이슈
+    - Jpa에서 Converter 활용하기
+    - Jpa에서 Embedded 활용하기
+    - Jpa에서 영속성 컨텍스트 불일치
+
+- **Security**
+    - 첫 시작
+    - 기본적인 내용을 살펴보자!
+    - 스프링 시큐리티의 큰 그림
+    - 로그인 하기
+    - 폼 로그인
+    - Basic-login
+    - Authentication 메커니즘 실습
+    - BasicAuthenticationFilter
+    - BasicAuthentication 심화
+    - DAO AuthenticationManager와 UserDetailsService
+    - 로그인을 지원하기 위한 필터들
+    - 세션 관리
+    - 권한 체크와 오류 처리
+    - 스프링 시큐리티 권한
+    - 권한 실습
+    - voter
+    - ExpressionVoter 실습
+    - MethodSecurityMetadataSource
+    - 임시 권한 부여: RunAsManager
+    - ACL을 이용한 도메인 객체 권한 관리
+    - JWT 토큰이란?
+    - RefreshToken을 이용한 로그인
+    - Oath2
