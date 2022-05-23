@@ -74,3 +74,7 @@
     - [JWT 토큰이란?](https://busy-trawler-2e3.notion.site/JWT-acc4c50ed73a4267b0a656d999de3ebd)
     - [RefreshToken을 이용한 로그인](https://busy-trawler-2e3.notion.site/RefreshToken-40050b28740148099a1573486975456f)
     - [Oath2](https://busy-trawler-2e3.notion.site/OAuth2-a9ee3bc46b3947d0ab0c66ad1dda3de9)
+
+- **멘토링 후기**
+    - [kyle님의 멘토링 후기](https://busy-trawler-2e3.notion.site/kyle-3e9a8d1002094f5d9954c57ad8b2dc46)
+
