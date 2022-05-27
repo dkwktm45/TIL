@@ -1,5 +1,8 @@
 # Today I Learned
 
+### 문제 직면
+- [Hibernate에서 지연로딩을 사용하는 동안 예외](https://busy-trawler-2e3.notion.site/Hibernate-baef95d922724180a571bd3d42f0a17d)
+
 ## Spring
 - **시작**
     - [개발환경 설치](https://busy-trawler-2e3.notion.site/c82066d13ad94a31923b344f62212a42)
