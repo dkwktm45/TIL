@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: chat-mysql
+    environment:
+      MYSQL_DATABASE: chat
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3309:3309"
+  redis:
+    image: redis
+    hostname: host
+    command: ["redis-server", "--bind", "redis", "--port", "6370"]
+    container_name: chat-redis
+    ports:
+      - "6370:6370"
+  spring-chat-demo:
+    image: spring-chat-demo
+    container_name: spring-chat-demo-container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/chat?useSSL=false&autoReconnection=true&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+    build: . .
+    ports:
+      - "8001:8008"
+    depends_on:
+      - redis
+      - mysql
+    links:
+      - mysql

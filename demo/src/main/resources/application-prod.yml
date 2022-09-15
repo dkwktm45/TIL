@@ -1,0 +1,26 @@
+server:
+  port: 8008
+
+spring:
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:mysql://mysql:3309/chat?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&autoReconnection=true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: redis
+    port: 6370
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        enable_lazy_load_no_trans: true
+  config:
+    use-legacy-processing: true

@@ -1,0 +1,31 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3307/test
+    username: root
+    password: dkwktm45
+    driver-class-name: org.mariadb.jdbc.Driver
+  profiles:
+    active:
+      on-profile: redis
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+    add-properties: false
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        enable_lazy_load_no_trans: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jwt:
+    secret: govlepel@$&
