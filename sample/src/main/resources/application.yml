@@ -1,0 +1,22 @@
+logging:
+  level:
+    root: info
+    com.batch.sample: debug
+spring:
+  batch:
+    job:
+      names: ${job.name:NONE}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: dkwktm45
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
