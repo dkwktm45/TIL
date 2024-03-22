@@ -1,5 +1,7 @@
 package lateinitAndLazy
 
+import kotlin.properties.Delegates
+
 // 1
 class Person(
     private var name: String = "홍길동",
@@ -50,6 +52,33 @@ class Person5 {
     }
 }
 
+// 4
+class Person8 {
+    // observable : 변수에 초기 값을 지정하고 값이 변경될 때마다 함수를 호출할 수 있습니다.
+    var name: Int by Delegates.observable(20 ){
+        property, oldValue, newValue ->
+        println("이전값 : ${oldValue} 새로운 값 ${newValue}")
+    }
+}
+
+class Person9 {
+    // vetoable : obervable와 유사하지만 boolean을 반환한다.
+    var name: Int by Delegates.vetoable(20 ){
+            property, oldValue, newValue ->
+        newValue >= oldValue
+    }
+
+    // 또 다른 프로퍼티로 위임하기
+    @Deprecated("age를 사용하세요!", ReplaceWith("age"))
+    var num: Int = 10
+    // :: 두개를 사용하면 위임 객체가 된다.
+    var age: Int by this::num
+}
+
+class Person10(map: Map<String,Any>) {
+    val name: String by map
+    val age: Int by map
+}
 fun main() {
     // 이때 클래스 인스턴스화가 이루어지며, name에 "최대현"이 들어간다.
     val person = Person("이진영")
@@ -64,4 +93,13 @@ fun main() {
     // 2. by lazy 사용 -> 5
 
     // 둘의 차이 : latenint은 언제든지 초기화를 매번 사용할 수 있지만 lazy의 초기화 로직은 변수 선언과 동시에 한 곳에만 위치할 수 있다.
+
+    // 기타 lainit
+    val test = Person8();
+    test.name = 1
+    test.name = 30
+
+    val mapTest = Person10(mapOf("test" to "1"))
+    println(mapTest.name)
+    println(mapTest.age)
 }
